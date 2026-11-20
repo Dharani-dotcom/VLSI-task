@@ -1,0 +1,23 @@
+# FSM-Based Vending Machine Controller on Artix-7 FPGA
+
+A Finite State Machine (FSM) based Vending Machine controller designed in **Verilog HDL**, simulated, synthesized, and implemented on a **Xilinx Artix-7 FPGA** using **AMD Vivado Design Suite**.
+
+## 📌 Overview
+The controller simulates a digital vending machine that dispenses an item priced at **₹15**. It accepts **₹5** and **₹10** coin inputs via onboard push buttons, tracks accumulated balance across states, dispenses the product, and returns **₹5** change when overpaid (₹20).
+
+## 🛠️ Hardware & Software Requirements
+* **Hardware:** Xilinx Artix-7 FPGA Development Board (e.g., Digilent Basys 3 / Nexys A7)
+* **EDA Tool:** AMD / Xilinx Vivado Design Suite (v2022.2 or later)
+* **Language:** Verilog HDL
+
+## ⚙️ State Transition Logic
+| Current State | Balance | Input (`₹5`) | Input (`₹10`) |
+| :--- | :--- | :--- | :--- |
+| **`S0`** | ₹0 | Next: `S5` \| Out: `0, 0` | Next: `S10` \| Out: `0, 0` |
+| **`S5`** | ₹5 | Next: `S10` \| Out: `0, 0` | Next: `S0` \| Out: `Dispense = 1` |
+| **`S10`** | ₹10 | Next: `S0` \| Out: `Dispense = 1` | Next: `S0` \| Out: `Dispense = 1, Change = 1` |
+
+## 🚀 How to Run in Vivado
+1. Clone this repository:
+   ```bash
+   git clone [https://github.com/](https://github.com/)<your-username>/vending-machine-verilog-fpga.git
